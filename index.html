@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusOrDie - Profissional</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="btn-settings" onclick="toggleSettings()" style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.5); border: 1px solid #fff; color: #fff; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">⚙️</button>
+
+    <div id="settings-panel" style="display:none; position: fixed; top: 70px; right: 20px; background: rgba(0,0,0,0.95); padding: 20px; border-radius: 10px; z-index: 1000; min-width: 220px; border: 1px solid #444; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        <h3 style="margin-top:0; border-bottom: 1px solid #444; padding-bottom: 10px;">Preferências Arcanas</h3>
+        
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 12px;">Volume do Alarme:</label>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5" style="width: 100%" onchange="updateVolume()">
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 12px;">Foco (min):</label>
+            <input type="number" id="focusTime" value="25" min="1" style="width: 100%; background: #222; color: #fff; border: 1px solid #555; padding: 5px; border-radius: 4px;">
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 12px;">Pausa (min):</label>
+            <input type="number" id="breakTime" value="5" min="1" style="width: 100%; background: #222; color: #fff; border: 1px solid #555; padding: 5px; border-radius: 4px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 12px;">Meta Diária:</label>
+            <input type="number" id="dailyGoal" value="8" min="1" style="width: 100%; background: #222; color: #fff; border: 1px solid #555; padding: 5px; border-radius: 4px;">
+        </div>
+
+        <button onclick="savePreferences()" style="background:#2ecc71; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; width:100%; font-weight: bold;">SALVAR E APLICAR</button>
+    </div>
+
+    <div class="container">
+        <h1 id="status">PRONTO?</h1>
+        
+        <div id="timer" style="font-size: 100px; font-weight: bold; margin: 20px 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">25:00</div>
+
+        <div class="controls">
+            <button id="btn-start" onclick="startTimer()">INICIAR FOCO</button>
+            <button id="btn-pause" onclick="pauseTimer()" style="display:none;">PAUSAR</button>
+            <button id="btn-back" onclick="completeCycle()" style="display:none;">ESTOU DE VOLTA! (PARAR CAOS)</button>
+        </div>
+
+        <div class="panel">
+            <h3>Missões Arcanas (Tarefas)</h3>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <input type="text" id="todoText" placeholder="O que vamos fazer?" style="flex-grow: 1; padding: 12px; border-radius: 8px; border: none; background: rgba(255,255,255,0.1); color: white;">
+                <button onclick="addTodo()" class="btn-chart" style="white-space: nowrap;">Adicionar</button>
+            </div>
+            <ul id="todoList" style="list-style: none; padding: 0; margin-top: 15px; text-align: left;"></ul>
+        </div>
+
+        <div class="panel">
+            <h3>Seu Desempenho</h3>
+       <div class="chart-controls" style="text-align: center; margin-bottom: 15px;">
+    <button onclick="changeChartMode('semanal')" class="btn-chart">Semanal</button>
+    <button onclick="changeChartMode('diario')" class="btn-chart">Meta Diária</button>
+</div>
+            <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <div id="msg" class="overlay-msg">VOLTE AO TRABALHO AGORA!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

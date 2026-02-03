@@ -1,0 +1,154 @@
+:root {
+    --bg-color: #0a0a0a;
+    --accent-red: #ff4c4c;
+    --btn-green: #2ecc71;
+    --panel-bg: #1a1a1a;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    transition: background 0.8s ease-in-out;
+
+    /* A mágica acontece aqui: substitua elfa-foco.jpg pelo nome real do arquivo */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                      url('elfafoco.png'); 
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container { width: 100%; max-width: 500px; padding: 40px 20px; text-align: center; position: relative; z-index: 10; }
+
+#timer {
+    font-size: clamp(80px, 15vw, 120px);
+    font-weight: 800;
+    margin: 20px 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.panel {
+    background: var(--panel-bg);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid #333;
+}
+
+.controls button {
+    padding: 20px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+#btn-start { background: var(--accent-red); }
+#btn-pause { background: #f39c12; }
+#btn-back { 
+    background: var(--btn-green); 
+    display: none; 
+    position: relative;
+    z-index: 3000;
+    border: 4px solid white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.annoy-mode { background-color: #ff0000 !important; }
+
+.overlay-msg {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 30px;
+    z-index: 1000;
+    display: none;
+    font-weight: 900;
+    border: 15px solid black;
+    font-size: 35px;
+    text-align: center;
+    width: 90%;
+    pointer-events: none;
+}
+
+input { background: #333; border: 1px solid #444; color: white; padding: 8px; border-radius: 5px; width: 50px; }
+canvas {
+    max-width: 100%;
+    margin-top: 20px;
+    background: #1a1a1a; /* Combina com o fundo do painel */
+    border-radius: 10px;
+    padding: 15px;
+}
+/* --- ESTILOS DOS BOTÕES DO GRÁFICO --- */
+
+.chart-controls {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-chart {
+    background: rgba(255, 255, 255, 0.1); /* Fundo transparente para combinar com a elfa */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px); /* Efeito de vidro */
+}
+
+.btn-chart:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    transform: translateY(-2px); /* Pequeno pulo ao passar o mouse */
+    box-shadow: 0 4px 10px rgba(255, 76, 76, 0.3);
+}
+
+.btn-chart:active {
+    transform: translateY(0);
+}
+.settings-grid { display: flex; justify-content: space-around; gap: 10px; flex-wrap: wrap; }
+
+#todoList li {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid var(--accent-red);
+}
+
+.todo-done { text-decoration: line-through; opacity: 0.5; }
+
+.btn-del { background: none; border: none; color: #ff4c4c; cursor: pointer; font-weight: bold; }
+.todo-done {
+    text-decoration: line-through;
+    color: #888;
+    opacity: 0.6;
+}
